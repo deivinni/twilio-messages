@@ -25,9 +25,13 @@ export default async function handler (
 
   // #region create message
 
+  const makeNumber = (phone: string) => "whatsapp:+" + phone.toString().replace(/[+]/g, '').trim();
+
   await client.messages.create(
     {
-      from, to, contentSid,
+      from: makeNumber(from),
+      to: makeNumber(to),
+      contentSid,
       messagingServiceSid: process.env.MESSAGING_SERVICE_SID
     },
     (error: Error, item: MessageInstance | undefined) => {
