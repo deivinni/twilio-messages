@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import TwilioClient from "twilio";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { MessageInstance, MessageListInstanceCreateOptions } from "twilio/lib/rest/api/v2010/account/message";
+import TwilioClient from "twilio";
 
 const client = TwilioClient(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
@@ -15,12 +15,10 @@ export default async function handler (
 
   // #region url params
 
-  console.log(req.url);
-
-  const from = findParameter("from");
-  const to = findParameter("to");
-  const contentSid = findParameter("content_sid");
-  const contentVariables = findParameter("variables");
+  const from = findParameter("from") ?? req.body.from;
+  const to = findParameter("to") ?? req.body.to;
+  const contentSid = findParameter("content_sid") ?? req.body.content_sid;
+  const contentVariables = findParameter("variables") ?? req.body.variables;
 
   if (!from) return res.status(400).json({ error: { status: 400, message: "The \"from\" parameter is required" }});
   if (!to) return res.status(400).json({ error: { status: 400, message: "The \"to\" parameter is required" }});
