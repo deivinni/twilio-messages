@@ -10,10 +10,10 @@ export default async function handler (
 ) {
   if (req.method != 'POST') return res.status(400).send('This service only accepts POST method requests');
 
+  // #region url params
+
   const url: URL = new URL(req.url as string, `https://${req.headers.host}`);
   const findParameter = (param: string): string => (url.searchParams.get(param)?.toString() as string);
-
-  // #region url params
 
   const from = findParameter('from') ?? req.body.from;
   const to = findParameter('to') ?? req.body.to;
