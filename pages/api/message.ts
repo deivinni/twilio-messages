@@ -8,12 +8,14 @@ export default async function handler (
   req: NextApiRequest,
   res: NextApiResponse<IMessageResponseData | IMessageErrorData | string>
 ) {
-  // if (req.method != "POST") return res.status(400).send("This service only accepts POST method requests");
+  if (req.method != "POST") return res.status(400).send("This service only accepts POST method requests");
 
   const url: URL = new URL(req.url as string, `https://${req.headers.host}`);
   const findParameter = (param: string): string => (url.searchParams.get(param)?.toString() as string);
 
   // #region url params
+
+  console.log(req.url);
 
   const from = findParameter("from");
   const to = findParameter("to");
