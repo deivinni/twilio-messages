@@ -1,4 +1,4 @@
-interface IMessageResponseData {
+interface IMessageDataResponse {
   body: {
     apiVersion: string,
     dateCreated: Date,
@@ -7,20 +7,11 @@ interface IMessageResponseData {
     direction: string,
     errorCode?: number,
     errorMessage?: string,
-    from: string,
     numMedia: string,
     numSegments: string,
     price?: string,
     priceUnit?: string,
     sid: string,
     status: string,
-    to: string,
-  }
-}
-
-interface IMessageErrorData {
-  error: {
-    status: number,
-    message: string
   }
 }
