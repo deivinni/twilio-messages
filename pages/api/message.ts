@@ -55,20 +55,6 @@ function makePhoneNumber (phoneNumber: string): string {
 
 function createMessageDataResponse (item: MessageInstance): IMessageDataResponse {
   return {
-    body: {
-      apiVersion: item.apiVersion,
-      dateCreated: item.dateCreated,
-      dateSent: item.dateSent,
-      dateUpdated: item.dateUpdated,
-      direction: item.direction,
-      errorCode: item.errorCode,
-      errorMessage: item.errorMessage,
-      numMedia: item.numMedia,
-      numSegments: item.numSegments,
-      price: item.price,
-      priceUnit: item.priceUnit,
-      sid: item.sid,
-      status: item.status,
-    }
+    body: { ...item }
   }
 }
